@@ -12,27 +12,114 @@
 </head>
 
 <body>
-
-  <div class="flex-row align-start align-stretch-md align-content-start align-content-stretch-md min-100-vh bg-primary">
-    <div class="col-12 col-md-3 bg-light p-3">
-      <h1 class="text-primary">Weather Dashboard</h1>
+  <header>Weather Dashboard</header>
+  <div class="search-container">
+    <div>
+      <h1 class="search-title">Search for a City:</h1>
       <form id="search-form" class="mb-2">
-        <input id="search-input" class="form-input w-100" type="text" placeholder="Search!">
+        <input id="search-input" class="form-input" type="text" placeholder="City Name">
         
         </select>
-        <button class="btn btn-info btn-block">Search</button>
+        
       </form>
+      <button>Search</button>
 
-      <a href="./index.html" class="btn btn-block btn-danger">&larr; Go back.</a>
     </div>
 
     <div class="col-12 col-md-9 p-3 text-light">
       <h2>Showing results for <span id="result-text"></span></h2>
-      <div id="weather-container" class="list-group">
+      <div id="history-container" class="list-group">
         <ul id="result-history">
 
         </ul>
       </div>
+    </div>
+  </div>
+  <div class="weather-container">
+    <div class="today-forecast">
+      <div class="card-body">
+        <h2 class="today">City (Date)</h2>
+      
+        <p class="temp">Average Temp:</p>
+        <p class="wind">Wind Speed:</p>
+        <p class="humidity">Humidity:</p>
+      </div>
+    </div>
+    <div class="flex-container">
+      <div>
+        <div class="day-1"> 
+          <h3 class="date">Date:</h3>
+          <img class="img-1"
+            src=""
+            alt=""
+            />
+               
+            <p class="temp">Average Temp</p>
+            <p class="wind">Wind Speed</p>
+            <p class="humidity">Humidity</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="day-1"> 
+          <h3 class="date">Date:</h3>
+          <img class="img-1"
+            src=""
+            alt=""
+            />
+               
+            <p class="temp">Average Temp</p>
+            <p class="wind">Wind Speed</p>
+            <p class="humidity">Humidity</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="day-1"> 
+          <h3 class="date">Date:</h3>
+          <img class="img-1"
+            src=""
+            alt=""
+            />
+               
+            <p class="temp">Average Temp</p>
+            <p class="wind">Wind Speed</p>
+            <p class="humidity">Humidity</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="day-1"> 
+          <h3 class="date">Date:</h3>
+          <img class="img-1"
+            src=""
+            alt=""
+            />
+               
+            <p class="temp">Average Temp</p>
+            <p class="wind">Wind Speed</p>
+            <p class="humidity">Humidity</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="day-1"> 
+          <h3 class="date">Date:</h3>
+          <img class="img-1"
+            src=""
+            alt=""
+            />
+               
+            <p class="temp">Average Temp</p>
+            <p class="wind">Wind Speed</p>
+            <p class="humidity">Humidity</p>
+        </div>
+      </div>
+
+
+      
+
+      
     </div>
   </div>
 

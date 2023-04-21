@@ -45,23 +45,28 @@ var getGeo = function (city) {
 //     var apiUrl = 'api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&appid=' + apiKey;
 // }
 
-// var displayWeather = function(days, searchTerm) {
-//     if (days.length ===0) {
-//         weatherContainerEl.textContent = 'No weather data found for the next 5 days.';
-//         return;
-//     }
+var displayWeather = function(days, searchTerm) {
+    if (days.length ===0) {
+        weatherContainerEl.textContent = 'No weather data found for the next 5 days.';
+        return;
+    }
 
-//     resultTextEl.textContent = searchTerm;
+    resultTextEl.textContent = searchTerm;
 
-//     for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < 5; i++) {
         
-//         var weatherDate = days[i].
-//         var weatherEl = document.createElement('div');
-//         weatherEl.classList = 'list-item flex-row justify-space-between align-center';
+        var weatherDate = days[i].main;
+        var weatherEl = document.createElement('div');
+        weatherEl.classList = 'list-item flex-row justify-space-between align-center';
 
-//         var dateEl = document.createElement('span');
-//         dateEl.textContent = 
-//     }
-// }
+        var dateEl = document.createElement('span');
+        dateEl.textContent = weatherDate;
+
+        weatherEl.appendChild(dateEl);
+
+        var statusEl = document.createElement('span');
+        statusEl.classList = 'flex-row align-center';
+    }
+};
 
 searchFormEl.addEventListener('submit', handleSearchFormSubmit);

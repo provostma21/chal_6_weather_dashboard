@@ -1,0 +1,87 @@
+*{
+    color: rgb(7, 1, 1);
+    background: whitesmoke;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header {
+    color: white;
+    background-image: linear-gradient(to right, rgb(130, 130, 241), rgb(4, 4, 73));
+    text-align: center;
+    width: auto;
+    height: 75px;
+    font-size: 40px;
+}
+
+.search-container {
+    width: 300px;
+    border: 1px;
+
+}
+
+input {
+    width: 285px;
+    border-radius: 4px;
+    padding: 6px;
+}
+
+button {
+    background-color: rgb(173, 173, 245);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: 300px;
+    padding: 6px;
+    margin-top: 10px;
+    display: inline-block;
+    align-self: center;
+    font-size: 15px;
+}
+
+.weather-container {
+    position: absolute;
+    top: 43%;
+    left: 51%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    height: 600px;
+    width: 1300px;
+    border: 1px solid black;
+}
+
+.today-forecast {
+    border: 1px solid black;
+    height: 200px;
+    font-size: 15px;
+}
+
+.today-forecast > div {
+    margin-left: 20px;
+}
+
+.flex-container {
+    display: inline-flex;
+    justify-content: space-between;
+    height: 200px;
+    width: 190px;
+    margin: 20px;
+    margin-left: auto;
+}
+
+.flex-container > div > div {
+    width: 80px;
+    height: 100px;
+    margin: 10px;
+    padding: 40px;
+    margin-left: 0px;
+    margin-right: 80px;
+    color: white;
+    background-color: rgb(57, 69, 80);
+    font-size: 12px;
+    border: 1px solid black;
+}
+
+.flex-container > div > div > h3 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
