@@ -1,4 +1,5 @@
 var searchFormEl = $('#search-form');
+var searchCity = $('#search-city-btn');
 var weatherContainer = $('.weather-container');
 var resultTextEl = $('#result-text');
 var cityInputEl = $('#search-input');
@@ -21,13 +22,13 @@ $('#currentDate').text("(" + currentDate + ")");
 loadSearchHistory();
 
 
-function GetInfo() {
+searchCity.on('click', function(){
   event.preventDefault();
     var newName= cityInput.val().trim();
     currentWeatherRequest(newName);
     searchHistory(newName);
 
-};
+     });
 
 function currentWeatherRequest(newName) {
     var queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + newName + "&units=imperial&appid=" + apiKey;
