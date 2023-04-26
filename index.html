@@ -17,17 +17,17 @@
     <div>
       <h1 class="search-title">Search for a City:</h1>
       <form id="search-form" class="mb-2">
-        <input id="search-input" class="form-input" type="text" placeholder="City Name">
+        <input type="text" id="cityInput" class="form-input" type="text" placeholder="City Name">
         
         </select>
         
       </form>
-      <button>Search</button>
+      <button onclick="GetInfo()">Search</button>
 
     </div>
 
     <div class="col-12 col-md-9 p-3 text-light">
-      <h2>Showing results for <span id="result-text"></span></h2>
+      <h2>Search History: <span id="result-text"></span></h2>
       <div id="history-container" class="list-group">
         <ul id="result-history">
 
@@ -38,81 +38,76 @@
   <div class="weather-container">
     <div class="today-forecast">
       <div class="card-body">
-        <h2 class="today">City (Date)</h2>
+        <h2 class="todayCity"id="currentDate">City (Date)</h2>
       
-        <p class="temp">Average Temp:</p>
-        <p class="wind">Wind Speed:</p>
-        <p class="humidity">Humidity:</p>
+        <p id="currentTemp">Loading...</p>
+        <p id="currentWind">Loading...</p>
+        <p id="currentHumidity">Loading...</p>
       </div>
     </div>
-    <div class="flex-container">
+    <div class="forecast-container">
       <div>
-        <div class="day-1"> 
-          <h3 class="date">Date:</h3>
-          <img class="img-1"
-            src=""
-            alt=""
+        <div class="weather" id="day1"> 
+          <h3 class="date1" id="forecastDate">Loading...</h3>
+          <img class="img-1" id="weatherIcon"
+            
             />
                
-            <p class="temp">Average Temp</p>
-            <p class="wind">Wind Speed</p>
-            <p class="humidity">Humidity</p>
+            <p id="temp">Loading...</p>
+            <p id="wind">Loading...</p>
+            <p id="humidity">Loading...</p>
         </div>
       </div>
 
       <div>
-        <div class="day-1"> 
-          <h3 class="date">Date:</h3>
-          <img class="img-1"
-            src=""
-            alt=""
+        <div class="weather" id="day2"> 
+          <h3 class="date2" id="date">Loading...</h3>
+          <img class="img-2" id="weatherIcon
+           
             />
                
-            <p class="temp">Average Temp</p>
-            <p class="wind">Wind Speed</p>
-            <p class="humidity">Humidity</p>
+            <p id="temp">Loading...</p>
+            <p id="wind">Loading...</p>
+            <p id="humidity">Loading...</p>
         </div>
       </div>
 
       <div>
-        <div class="day-1"> 
-          <h3 class="date">Date:</h3>
-          <img class="img-1"
-            src=""
-            alt=""
+        <div class="weather" id="day3"> 
+          <h3 class="date3" id="date">Loading...</h3>
+          <img class="img-3" id="weatherIcon
+           
             />
                
-            <p class="temp">Average Temp</p>
-            <p class="wind">Wind Speed</p>
-            <p class="humidity">Humidity</p>
+            <p id="temp">Loading...</p>
+            <p id="wind">Loading...</p>
+            <p id="humidity">Loading...</p>
         </div>
       </div>
 
       <div>
-        <div class="day-1"> 
-          <h3 class="date">Date:</h3>
-          <img class="img-1"
-            src=""
-            alt=""
+        <div class="weather" id="day4"> 
+          <h3 class="date4"id="date">Loading...</h3>
+          <img class="img-4" id="weatherIcon
+           
             />
                
-            <p class="temp">Average Temp</p>
-            <p class="wind">Wind Speed</p>
-            <p class="humidity">Humidity</p>
+            <p id="temp">Loading...</p>
+            <p id="wind">Loading...</p>
+            <p id="humidity">Loading...</p>
         </div>
       </div>
 
       <div>
-        <div class="day-1"> 
-          <h3 class="date">Date:</h3>
-          <img class="img-1"
-            src=""
-            alt=""
+        <div class="weather" id="day5"> 
+          <h3 class="date5"id="date">Loading...</h3>
+          <img class="img-5" id="weatherIcon
+           
             />
                
-            <p class="temp">Average Temp</p>
-            <p class="wind">Wind Speed</p>
-            <p class="humidity">Humidity</p>
+            <p id="temp">Loading...</p>
+            <p id="wind">Loading...</p>
+            <p id="humidity">Loading...</p>
         </div>
       </div>
 
@@ -122,7 +117,9 @@
       
     </div>
   </div>
-
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
   <script src="./assets/script.js"></script>
 </body>
 

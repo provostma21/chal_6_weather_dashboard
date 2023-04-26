@@ -1,72 +1,120 @@
-var searchFormEl = document.querySelector('#search-form');
-var weatherContainerEl = document.querySelector('#weather-container');
-var resultTextEl = document.querySelector('#result-text');
-var cityInputEl = document.querySelector('#search-input');
+var searchFormEl = $('#search-form');
+var weatherContainer = $('.weather-container');
+var resultTextEl = $('#result-text');
+var cityInputEl = $('#search-input');
+var cityName = $('.todayCity');
+var cityInput = $('#cityInput');
+var forecastContainer = $(".forecast-container");
+var weatherIcon = $("#weatherIcon");
+var cityList = [];
 apiKey = '21adf659df66103262a537b3b37fad51';
+var searchHistory = [];
+temperature = 0;
+wind = 0;
+humidity = 0;
+forecastCycle = 0;
 
-function handleSearchFormSubmit(event) {
+var currentDate = dayjs().format("dddd, MM/DD/YYYY");
+
+$('#currentDate').text("(" + currentDate + ")");
+
+loadSearchHistory();
+
+
+function GetInfo() {
   event.preventDefault();
-
-  var cityName = cityInputEl.value.trim();
-
-  if (cityName) {
-    getGeo(cityName);
-
-    resultTextEl.textContent = '';
-    cityInputEl.value = '';
-
-  } else {
-    alert('Please enter a city');
-  }
+    var newName= cityInput.val().trim();
+    currentWeatherRequest(newName);
+    searchHistory(newName);
 
 };
 
-var getGeo = function (city) {
-    var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q='+ city + '&appid=' + apiKey;
+function currentWeatherRequest(newName) {
+    var queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + newName + "&units=imperial&appid=" + apiKey;
 
-    fetch(apiUrl)
-    .then(function (response) {
-        if (response.ok) {
-            console.log(response);
-            response.json().then(function (data) {
-                console.log(data);
-                displayWeather(data, city);
-            });
-        } else {
-            alert('Error: ' + response.statusText);
-        }
-    })
-    .catch(function (error) {
-        alert('Unable to get your weather based on city name');
-    });
-};
+    $.ajax({
+        url: queryUrl,
+        method: 'GET',
+    }).then(function(response) {
+        console.log(response);
+        cityName.text(response.name);
+        $('#currentDate').text('(' + currentDate + ')');
+        cityName.append(
+            "<img src='https://openweathermap.org/img/w/'" + response.weather[0].icon + ".png' alt=''" + response.weather[0].main +"' />"
+        );
 
-// var getWeather = function (lat, lon) {
-//     var apiUrl = 'api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&appid=' + apiKey;
-// }
-
-var displayWeather = function(days, searchTerm) {
-    if (days.length ===0) {
-        weatherContainerEl.textContent = 'No weather data found for the next 5 days.';
-        return;
-    }
-
-    resultTextEl.textContent = searchTerm;
-
-    for (var i = 0; i < 5; i++) {
+        $('#currentTemp').text(response.main.temp + " °F");
+        $('#currentWind').text(response.wind.speed + " MPH");
+        $('#currentHumidity').text(response.main.humidity + " %");
         
-        var weatherDate = days[i].main;
-        var weatherEl = document.createElement('div');
-        weatherEl.classList = 'list-item flex-row justify-space-between align-center';
 
-        var dateEl = document.createElement('span');
-        dateEl.textContent = weatherDate;
 
-        weatherEl.appendChild(dateEl);
+        var lat = response.coord.lat;
+        var lon = response.coord.lon;
 
-        var statusEl = document.createElement('span');
-        statusEl.classList = 'flex-row align-center';
-    }
+        var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?&units=imperial&appid="+ apiKey + "&lat=" +  lat +  "&lon=" + lon + '';
+        
+        
+        $.ajax({
+            url: forecastUrl,
+            method: 'GET',
+        }).then(function (response) {
+            console.log(response);
+            for (var i = 1; i < 40; i++) {
+                if (i % 8 ===0) {
+                var dateString = dayjs(response.list[i].dt_txt).format("dddd, MM/DD/YYYY"
+                
+                );
+                console.log(dateString);
+
+                $("#weatherIcon").attr("src","http://openweathermap.org/img/wn/" + response.list[i].weather[0].icon + "@2x.png");
+                $('#forecastDate').text(dateString);
+                $('#temp').text("Temp: " + response.list[i].main.temp + " °F");
+                $('#wind').text("Wind: " + response.list[i].wind.speed + " MPH");
+                $('#humidity').text("Humidity: " + response.list[i].main.humidity + " %");
+            }};
+        });    
+    });  
 };
 
-searchFormEl.addEventListener('submit', handleSearchFormSubmit);
+  
+function searchHistory(newName) {
+    if (newName) {
+        if (cityList.indexOf(newName) === -1) {
+            cityList.push(newName);
+
+            listArray();
+            
+        } else {
+            var removeIndex = cityList.indexOf(newName);
+            cityList.splice(removeIndex, 1);
+            cityList.push(newName);
+
+            listArray();
+        }
+    }
+}
+
+function listArray() {
+    $('#result-history').empty();
+
+    cityList.forEach(function (city) {
+        var resultHistoryItem = $('<li></li>');
+        resultHistoryItem.text(city);
+        $('#result-history').prepend(resultHistoryItem);
+    });
+    localStorage.setItem("cities", JSON.stringify(cityList));
+}
+
+function loadSearchHistory() {
+    if (localStorage.getItem("cities")) {
+        cityList = JSON.parse(localStorage.getItem("cities"));
+        var lastIndex = cityList.length -1;
+
+        listArray();
+
+        if (cityList.length !== 0) {
+            currentWeatherRequest(cityList[lastIndex]);
+        }
+    }
+ }
